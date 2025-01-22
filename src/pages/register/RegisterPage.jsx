@@ -7,7 +7,9 @@ import {
     FormLabel, 
     Divider,
     Button,
-    Box } from '@mui/material';
+    Box, 
+    Grid 
+} from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FieldError } from '../../components/errors/Errors';
@@ -54,127 +56,147 @@ const RegisterPage = () => {
     });
 
     return (
-        <Container>
-         <Typography
-            component="h1"
-            variant="h4"
-            sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)', textAlign: "center", m: "10px 0px" }}
-          >
-            Sign up
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={formik.handleSubmit}
-            sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
-          >
-            <FormControl>
-              <FormLabel htmlFor="firstName">First name</FormLabel>
-              <TextField
-                autoComplete="firstName"
-                name="firstName"
-                fullWidth
-                id="firstName"
-                placeholder="Jon"
-                onChange={formik.handleChange}
-                value={formik.values.firstName}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.firstName && formik.errors.firstName ? (
-         <FieldError text={ formik.errors.firstName } /> ) : null}
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="name">Last name</FormLabel>
-              <TextField
-                autoComplete="lastName"
-                name="lastName"
-                fullWidth
-                id="lastName"
-                placeholder="Snow"
-                onChange={formik.handleChange}
-                value={formik.values.lastName}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.lastName && formik.errors.lastName ? (
-         <FieldError text={ formik.errors.lastName } />
-       ) : null}
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                placeholder="your@email.com"
-                name="email"
-                autoComplete="email"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.email && formik.errors.email ? (
-         <FieldError text={ formik.errors.email } />
-       ) : null}
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
-              <TextField
-                required
-                fullWidth
-                name="password"
-                placeholder="••••••"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.password}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.password && formik.errors.password ? (
-         <FieldError text={ formik.errors.password } />
-       ) : null}
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="confirmPassword">Confirm password</FormLabel>
-              <TextField
-                required
-                fullWidth
-                name="confirmPassword"
-                placeholder="••••••"
-                type="password"
-                id="confirmPassword"
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.confirmPassword}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-         <FieldError text={ formik.errors.confirmPassword } />
-       ) : null}
-            </FormControl>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
+        <Container maxWidth="sm" sx={{ background: 'linear-gradient(to right, #6a11cb, #2575fc)', borderRadius: 2, padding: 4 }}>
+            <Typography
+                component="h1"
+                variant="h4"
+                sx={{ fontSize: 'clamp(2rem, 10vw, 2.15rem)', textAlign: "center", color: 'white', fontWeight: 'bold', marginBottom: 3 }}
             >
-              Sign up
-            </Button>
-          </Box>
-          <Divider>
-            <Typography sx={{ color: 'text.secondary' }}>or</Typography>
-          </Divider>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Typography sx={{ textAlign: 'center' }}>
-              Already have an account?{' '}
-              <Link
-                to="/login"
-              >
-                Sign in
-              </Link>
+                Sign up
             </Typography>
-          </Box> 
-          </Container>
+
+            <Box
+                component="form"
+                onSubmit={formik.handleSubmit}
+                sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+            >
+                <FormControl sx={{ marginBottom: 2 }}>
+                    <FormLabel htmlFor="firstName" sx={{ color: 'white' }}>First name</FormLabel>
+                    <TextField
+                        autoComplete="firstName"
+                        name="firstName"
+                        fullWidth
+                        id="firstName"
+                        placeholder="Jon"
+                        onChange={formik.handleChange}
+                        value={formik.values.firstName}
+                        onBlur={formik.handleBlur}
+                        sx={{ input: { color: 'white' }, '& .MuiOutlinedInput-root': { borderColor: '#fff' }, '&:hover .MuiOutlinedInput-root': { borderColor: '#fff' }}}
+                    />
+                    {formik.touched.firstName && formik.errors.firstName ? (
+                        <FieldError text={formik.errors.firstName} />
+                    ) : null}
+                </FormControl>
+
+                <FormControl sx={{ marginBottom: 2 }}>
+                    <FormLabel htmlFor="lastName" sx={{ color: 'white' }}>Last name</FormLabel>
+                    <TextField
+                        autoComplete="lastName"
+                        name="lastName"
+                        fullWidth
+                        id="lastName"
+                        placeholder="Snow"
+                        onChange={formik.handleChange}
+                        value={formik.values.lastName}
+                        onBlur={formik.handleBlur}
+                        sx={{ input: { color: 'white' }, '& .MuiOutlinedInput-root': { borderColor: '#fff' }, '&:hover .MuiOutlinedInput-root': { borderColor: '#fff' }}}
+                    />
+                    {formik.touched.lastName && formik.errors.lastName ? (
+                        <FieldError text={formik.errors.lastName} />
+                    ) : null}
+                </FormControl>
+
+                <FormControl sx={{ marginBottom: 2 }}>
+                    <FormLabel htmlFor="email" sx={{ color: 'white' }}>Email</FormLabel>
+                    <TextField
+                        required
+                        fullWidth
+                        id="email"
+                        placeholder="your@email.com"
+                        name="email"
+                        autoComplete="email"
+                        variant="outlined"
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
+                        onBlur={formik.handleBlur}
+                        sx={{ input: { color: 'white' }, '& .MuiOutlinedInput-root': { borderColor: '#fff' }, '&:hover .MuiOutlinedInput-root': { borderColor: '#fff' }}}
+                    />
+                    {formik.touched.email && formik.errors.email ? (
+                        <FieldError text={formik.errors.email} />
+                    ) : null}
+                </FormControl>
+
+                <FormControl sx={{ marginBottom: 2 }}>
+                    <FormLabel htmlFor="password" sx={{ color: 'white' }}>Password</FormLabel>
+                    <TextField
+                        required
+                        fullWidth
+                        name="password"
+                        placeholder="••••••"
+                        type="password"
+                        id="password"
+                        autoComplete="new-password"
+                        variant="outlined"
+                        onChange={formik.handleChange}
+                        value={formik.values.password}
+                        onBlur={formik.handleBlur}
+                        sx={{ input: { color: 'white' }, '& .MuiOutlinedInput-root': { borderColor: '#fff' }, '&:hover .MuiOutlinedInput-root': { borderColor: '#fff' }}}
+                    />
+                    {formik.touched.password && formik.errors.password ? (
+                        <FieldError text={formik.errors.password} />
+                    ) : null}
+                </FormControl>
+
+                <FormControl sx={{ marginBottom: 3 }}>
+                    <FormLabel htmlFor="confirmPassword" sx={{ color: 'white' }}>Confirm password</FormLabel>
+                    <TextField
+                        required
+                        fullWidth
+                        name="confirmPassword"
+                        placeholder="••••••"
+                        type="password"
+                        id="confirmPassword"
+                        variant="outlined"
+                        onChange={formik.handleChange}
+                        value={formik.values.confirmPassword}
+                        onBlur={formik.handleBlur}
+                        sx={{ input: { color: 'white' }, '& .MuiOutlinedInput-root': { borderColor: '#fff' }, '&:hover .MuiOutlinedInput-root': { borderColor: '#fff' }}}
+                    />
+                    {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                        <FieldError text={formik.errors.confirmPassword} />
+                    ) : null}
+                </FormControl>
+
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{
+                        backgroundColor: '#2575fc',
+                        '&:hover': { backgroundColor: '#6a11cb' },
+                        padding: '12px 0',
+                        fontWeight: 'bold',
+                        boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+                        textTransform: 'none'
+                    }}
+                >
+                    Sign up
+                </Button>
+            </Box>
+
+            <Divider sx={{ marginY: 2 }}>
+                <Typography sx={{ color: 'white' }}>or</Typography>
+            </Divider>
+
+            <Grid container justifyContent="center">
+                <Typography sx={{ color: 'white' }}>
+                    Already have an account?{' '}
+                    <Link to="/login" style={{ color: '#fff', fontWeight: 'bold' }}>
+                        Sign in
+                    </Link>
+                </Typography>
+            </Grid>
+        </Container>
     );
 }
 
